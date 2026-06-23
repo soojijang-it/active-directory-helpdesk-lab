@@ -170,6 +170,7 @@ This lab demonstrates a complete Active Directory enterprise environment includi
 - Performed real-world help desk tasks (reset, access control)
 - Validated policy enforcement using gpresult / RSOP
 
+---
 
 ## Architecture Overview
 
