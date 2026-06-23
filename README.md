@@ -1,12 +1,12 @@
 # Active Directory Helpdesk Lab
 
 ## Overview
-This project simulates a real-world corporate Active Directory environment using Windows Server. It demonstrates core IT Help Desk and System Administration tasks including domain setup, user and group management, organizational units, file sharing, group policy, and access control enforcement.
+This project simulates a real-world corporate Active Directory environment using Windows Server. It demonstrates core IT Help Desk and System Administration tasks including domain setup, user and group management, organizational units, file sharing, group policy, access control, and policy enforcement validation.
 
 ---
 
 ## Purpose
-To develop practical IT support and system administration skills in a controlled virtual environment, focusing on Active Directory operations, identity management, and troubleshooting scenarios commonly found in enterprise environments.
+To develop practical IT support and system administration skills in a controlled virtual environment, focusing on Active Directory operations, identity management, Group Policy implementation, and troubleshooting scenarios commonly found in enterprise environments.
 
 ---
 
@@ -19,7 +19,9 @@ To develop practical IT support and system administration skills in a controlled
 - NTFS and Share Permissions
 - Group Policy Object (GPO) implementation
 - Domain-joined client authentication
+- DNS resolution in AD environment
 - Help Desk troubleshooting (password reset, access denied resolution)
+- Group Policy verification (gpresult / RSOP)
 
 ---
 
@@ -36,7 +38,7 @@ To develop practical IT support and system administration skills in a controlled
 ### 1. Infrastructure Setup
 - Installed Windows Server for Domain Controller (DC1)
 - Installed Windows 10/11 Client machine (Client1)
-- Configured network connectivity between server and client
+- Configured Host-only networking between server and client
 
 ---
 
@@ -47,80 +49,123 @@ To develop practical IT support and system administration skills in a controlled
 
 ---
 
-### 3. User and Group Management
-- Created multiple user accounts in Active Directory Users and Computers (ADUC)
-- Created security groups for departments (IT, HR, Finance)
-- Assigned users to appropriate security groups
+### 3. DNS & Network Configuration
+- Configured static IP on DC1
+- Set DNS on Client1 to DC1 IP (192.168.56.106)
+- Verified name resolution and connectivity
 
 ---
 
 ### 4. Organizational Unit (OU) Structure
 - Created departmental OUs (IT, HR, Finance)
-- Moved users into appropriate OUs for structured administration
+- Structured AD for role-based administration
 
 ---
 
-### 5. File Sharing & Permissions
-- Created shared folders on Domain Controller
-- Configured NTFS and share permissions
-- Applied role-based access using security groups
+### 5. User and Group Management
+- Created users (e.g. mike.wilson, finance users)
+- Created security groups (IT, Finance, HR groups)
+- Assigned users to correct groups and OUs
 
 ---
 
-### 6. Client Domain Authentication
-- Joined Client1 to domain
-- Verified successful domain login using `whoami`
+### 6. File Sharing & NTFS Permissions
+- Created shared folder on DC1 (IT-Share)
+- Configured NTFS + Share permissions
+- Applied group-based access control
 
 ---
 
-### 7. Access Control Testing
+### 7. Client Domain Join & Login Verification
+- Joined Client1 to domain (techcorp.local)
+- Verified domain login using `whoami`
+
+---
+
+### 8. Access Control Testing
 - Tested shared folder access from Client1
-- Verified permission enforcement across user groups
+- Verified permission enforcement (allowed vs denied access)
 
 ---
 
-### 8. Help Desk Task Simulation
-- Performed password reset using ADUC
-- Verified account recovery
+### 9. Help Desk Simulation (Password Reset)
+- Reset user password via ADUC
+- Verified login with new credentials
 
 ---
 
-### 9. Group Policy (GPO Implementation)
-- Created Group Policy Object to restrict Control Panel access
-- Linked GPO to Organizational Units
+### 10. Group Policy Object (GPO Configuration)
+- Created GPO (Company Security Policy)
+- Linked GPO to domain / OU
+- Configured user-side policy settings
 
 ---
 
-### 10. Security Validation (Access Denied Test)
+### 11. GPO Verification
+- Verified policy application using:
+  - `gpresult /r`
+  - `gpresult /h report.html`
+- Confirmed “Company Security Policy” applied
+
+---
+
+### 12. Access Denied Security Test
 - Attempted restricted access from Client1
-- Confirmed access denied due to permissions
+- Confirmed NTFS/GPO enforcement
+
+---
+
+### 13. Logon Script Implementation
+- Configured logon script (`logon.bat`)
+- Applied via GPO
+- Verified execution on user login
+
+---
+
+### 14. Active Directory Structure Validation
+- Verified OU structure in ADUC
+- Confirmed users and groups placement in Finance/other OUs
+
+---
+
+### 15. GPO Policy Applied Proof
+- Captured gpresult output showing:
+  - User: mike.wilson
+  - Applied Group Policy: Company Security Policy
+- Confirmed final policy enforcement success
 
 ---
 
 ## Screenshots Overview
 
-1. Domain Controller setup  
-2. AD DS installation  
-3. User creation in ADUC  
-4. OU structure  
-5. File sharing and permissions  
-6. Client domain login  
-7. Access testing  
-8. Password reset  
-9. GPO configuration  
-10. Access denied test  
+01. Domain Controller setup  
+02. AD DS installation & promotion  
+03. OU structure creation  
+04. Security groups configured  
+05. User and group creation  
+06. File sharing & NTFS permissions  
+07. GPO configuration  
+08. Client domain join  
+09. Client login verification  
+10. GPO result verification  
+11. Access control testing  
+12. Access denied test  
+13. Password reset (Help Desk task)  
+14. ADUC structure view  
+15. gpresult / RSOP policy applied proof  
 
 ---
 
 ## Project Summary
-This lab demonstrates a complete Active Directory environment implementation, focusing on identity management, access control, and enterprise-level user administration.
+This lab demonstrates a complete Active Directory enterprise environment including domain setup, identity management, access control, Group Policy enforcement, and troubleshooting validation using real-world IT help desk scenarios.
 
 ---
 
 ## Key Outcomes
-- Built and configured a Windows Server domain environment
-- Implemented Active Directory structure (users, groups, OUs)
-- Applied security controls using NTFS and Group Policies
-- Simulated help desk troubleshooting scenarios
-- Validated authentication and access control
-
+- Built full Windows Server domain environment
+- Designed OU structure for enterprise organization
+- Implemented user/group-based security model
+- Configured file sharing with NTFS permissions
+- Applied and verified Group Policy Objects
+- Performed real-world help desk tasks (reset, access control)
+- Validated policy enforcement using gpresult / RSOP
