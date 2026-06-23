@@ -169,3 +169,30 @@ This lab demonstrates a complete Active Directory enterprise environment includi
 - Applied and verified Group Policy Objects
 - Performed real-world help desk tasks (reset, access control)
 - Validated policy enforcement using gpresult / RSOP
+
+
+## Architecture Overview
+
+Domain: techcorp.local
+
+DC1 (Windows Server Domain Controller)
+- AD DS
+- DNS
+- Group Policy
+- Users & Groups
+- Shared Folder (IT-Share)
+
+Client1 (Windows 11)
+- Domain Joined
+- Authenticates via DC1
+- Receives GPO
+
+OUs:
+- IT
+- HR
+- Finance
+
+Security Groups:
+- IT Group
+- HR Group
+- Finance Group
