@@ -1,199 +1,172 @@
 # Active Directory Helpdesk Lab
 
+## Project Type
+Enterprise Windows Infrastructure • Active Directory • IT Support • System Administration • Virtual Lab
+
+---
+
+## Project Highlights
+- Built a complete Active Directory domain environment from scratch using Windows Server 2022  
+- Deployed and configured a Windows 11 Pro domain-joined client  
+- Configured virtual infrastructure, host-only networking, static IP addressing, and DNS  
+- Installed and configured Active Directory Domain Services (AD DS)  
+- Designed Organizational Units (OUs) and implemented Role-Based Access Control (RBAC)  
+- Created and managed domain users, security groups, and authentication  
+- Configured NTFS and SMB file sharing permissions for secure access control  
+- Implemented and validated Group Policy Objects (GPOs)  
+- Simulated real-world Help Desk troubleshooting scenarios (password reset, access control)  
+- Validated full Active Directory structure using ADUC  
+
+---
+
 ## Overview
-This project simulates a real-world corporate Active Directory environment using Windows Server. It demonstrates core IT Help Desk and System Administration tasks including domain setup, user and group management, organizational units, file sharing, group policy, access control, and policy enforcement validation.
+This project simulates a real-world enterprise Active Directory environment using Windows Server 2022 and Windows 11 Pro in a virtualized lab.
 
----
+It demonstrates core IT Support and System Administration responsibilities including domain deployment, identity management, access control, Group Policy configuration, DNS setup, authentication, and troubleshooting.
 
-## Purpose
-To develop practical IT support and system administration skills in a controlled virtual environment, focusing on Active Directory operations, identity management, Group Policy implementation, and troubleshooting scenarios commonly found in enterprise environments.
-
----
-
-## Skills Covered
-- Active Directory Domain Services (AD DS)
-- Domain Controller configuration
-- User and Group Management
-- Organizational Units (OU) design
-- Security Groups and Role-Based Access Control (RBAC)
-- NTFS and Share Permissions
-- Group Policy Object (GPO) implementation
-- Domain-joined client authentication
-- DNS resolution in AD environment
-- Help Desk troubleshooting (password reset, access denied resolution)
-- Group Policy verification (gpresult / RSOP)
+The objective is to replicate enterprise IT workflows commonly used in corporate environments and Managed Service Provider (MSP) operations.
 
 ---
 
 ## Environment
-- Windows Server (Domain Controller - DC1)
-- Windows 10/11 Client VM (Client1)
-- Active Directory Domain Services (AD DS)
-- Domain: techcorp.local
 
----
+### Virtualization Platform
+- Oracle VirtualBox  
 
-## Lab Steps
+### Domain Controller
+- Windows Server 2022 (TECHCORP-DC1)  
+- Active Directory Domain Services (AD DS)  
+- DNS Server  
+- Group Policy Management  
 
-### 1. Infrastructure Setup
-- Installed Windows Server for Domain Controller (DC1)
-- Installed Windows 10/11 Client machine (Client1)
-- Configured Host-only networking between server and client
+### Client Machine
+- Windows 11 Pro (Client1)  
+- Domain-joined workstation  
+- Active Directory authentication  
 
----
+### Domain
+- techcorp.local  
 
-### 2. Active Directory Domain Services Setup
-- Installed Active Directory Domain Services (AD DS)
-- Promoted server to Domain Controller
-- Created new forest and domain: `techcorp.local`
-
----
-
-### 3. DNS & Network Configuration
-- Configured static IP on DC1
-- Set DNS on Client1 to DC1 IP (192.168.56.106)
-- Verified name resolution and connectivity
-
----
-
-### 4. Organizational Unit (OU) Structure
-- Created departmental OUs (IT, HR, Finance)
-- Structured AD for role-based administration
-
----
-
-### 5. User and Group Management
-- Created users (e.g. mike.wilson, finance users)
-- Created security groups (IT, Finance, HR groups)
-- Assigned users to correct groups and OUs
-
----
-
-### 6. File Sharing & NTFS Permissions
-- Created shared folder on DC1 (IT-Share)
-- Configured NTFS + Share permissions
-- Applied group-based access control
-
----
-
-### 7. Client Domain Join & Login Verification
-- Joined Client1 to domain (techcorp.local)
-- Verified domain login using `whoami`
-
----
-
-### 8. Access Control Testing
-- Tested shared folder access from Client1
-- Verified permission enforcement (allowed vs denied access)
-
----
-
-### 9. Help Desk Simulation (Password Reset)
-- Reset user password via ADUC
-- Verified login with new credentials
-
----
-
-### 10. Group Policy Object (GPO Configuration)
-- Created GPO (Company Security Policy)
-- Linked GPO to domain / OU
-- Configured user-side policy settings
-
----
-
-### 11. GPO Verification
-- Verified policy application using:
-  - `gpresult /r`
-  - `gpresult /h report.html`
-- Confirmed “Company Security Policy” applied
-
----
-
-### 12. Access Denied Security Test
-- Attempted restricted access from Client1
-- Confirmed NTFS/GPO enforcement
-
----
-
-### 13. Logon Script Implementation
-- Configured logon script (`logon.bat`)
-- Applied via GPO
-- Verified execution on user login
-
----
-
-### 14. Active Directory Structure Validation
-- Verified OU structure in ADUC
-- Confirmed users and groups placement in Finance/other OUs
-
----
-
-### 15. GPO Policy Applied Proof
-- Captured gpresult output showing:
-  - User: mike.wilson
-  - Applied Group Policy: Company Security Policy
-- Confirmed final policy enforcement success
-
----
-
-## Screenshots Overview
-
-01. Domain Controller setup  
-02. AD DS installation & promotion  
-03. OU structure creation  
-04. Security groups configured  
-05. User and group creation  
-06. File sharing & NTFS permissions  
-07. GPO configuration  
-08. Client domain join  
-09. Client login verification  
-10. GPO result verification  
-11. Access control testing  
-12. Access denied test  
-13. Password reset (Help Desk task)  
-14. ADUC structure view  
-15. gpresult / RSOP policy applied proof  
-
----
-
-## Project Summary
-This lab demonstrates a complete Active Directory enterprise environment including domain setup, identity management, access control, Group Policy enforcement, and troubleshooting validation using real-world IT help desk scenarios.
-
----
-
-## Key Outcomes
-- Built full Windows Server domain environment
-- Designed OU structure for enterprise organization
-- Implemented user/group-based security model
-- Configured file sharing with NTFS permissions
-- Applied and verified Group Policy Objects
-- Performed real-world help desk tasks (reset, access control)
-- Validated policy enforcement using gpresult / RSOP
+### Network Configuration
+- Host-only virtual network  
+- Static IP configured on DC1  
+- Client configured to use DC1 as primary DNS  
+- Domain resolution handled via AD DNS  
 
 ---
 
 ## Architecture Overview
 
-Domain: techcorp.local
+### Domain Controller (DC1)
+- Active Directory Domain Services  
+- DNS Server  
+- Group Policy Management  
+- User and Group Management  
+- File Sharing Services  
 
-DC1 (Windows Server Domain Controller)
-- AD DS
-- DNS
-- Group Policy
-- Users & Groups
-- Shared Folder (IT-Share)
+### Client Machine (Client1)
+- Windows 11 domain-joined workstation  
+- Active Directory authentication  
+- Group Policy application  
+- Access to domain resources  
 
-Client1 (Windows 11)
-- Domain Joined
-- Authenticates via DC1
-- Receives GPO
+---
 
-OUs:
-- IT
-- HR
-- Finance
+## Technologies Used
+- Windows Server 2022  
+- Windows 11 Pro  
+- Active Directory Domain Services (AD DS)  
+- DNS Server  
+- Group Policy Management Console (GPMC)  
+- NTFS Permissions  
+- SMB File Sharing  
+- Oracle VirtualBox  
 
-Security Groups:
-- IT Group
-- HR Group
-- Finance Group
+---
+
+## Skills Demonstrated
+- Active Directory domain deployment  
+- Identity and Access Management (IAM)  
+- Role-Based Access Control (RBAC)  
+- Windows Server administration  
+- DNS configuration and name resolution  
+- Group Policy configuration and enforcement  
+- File sharing and NTFS permissions  
+- Domain join and authentication flow  
+- Help Desk troubleshooting (access denied, password reset)  
+- System validation using ADUC and gpresult / RSOP  
+
+---
+
+## Project Implementation
+
+### Virtual Infrastructure Setup
+- 01-ad-domain-controller-setup  
+- 02-vm-dc1-settings  
+- 03-vm-first-login  
+- 04-vm-hostname-verification  
+- 05-vm-static-ip-config  
+
+### Active Directory Deployment
+- 06-ad-prerequisites-check  
+- 07-ad-ds-installation-success  
+- 08-ad-ou-structure  
+- 09-ad-security-groups  
+- 10-ad-user-creation  
+
+### File Sharing & Permissions
+- 11-ad-file-share-ntfs-permissions  
+- 12-ad-file-share-access-success  
+- 13-ad-file-share-access-denied-test  
+
+### Group Policy (GPO)
+- 14-gpo-configuration  
+- 15-gpresult-rsop-verification  
+
+### Client Domain Integration
+- 16-ad-client1-domain-settings  
+- 17-client-domain-join  
+- 18-client-login-verification  
+
+### Validation & Help Desk
+- 19-password-reset  
+- 20-aduc-users-groups-review  
+
+---
+
+## Troubleshooting Scenarios
+- Domain join failures and DNS misconfiguration  
+- User authentication issues  
+- Access denied errors due to NTFS permissions  
+- Group Policy not applying (gpresult / RSOP validation)  
+- Password reset and account reactivation  
+
+---
+
+## Screenshots
+- VM and server configuration  
+- Active Directory installation  
+- OU and user creation  
+- Security group configuration  
+- File sharing permissions  
+- Group Policy deployment  
+- Client domain join process  
+- Authentication verification  
+- Help Desk troubleshooting scenarios  
+- Final ADUC structure validation  
+
+---
+
+## Learning Outcomes
+- Full understanding of Active Directory architecture  
+- Practical Windows Server administration experience  
+- Identity and access management skills  
+- Group Policy deployment and troubleshooting  
+- Enterprise file sharing security configuration  
+- Domain client integration and authentication flow  
+- Help Desk support simulation in enterprise environment  
+
+---
+
+## Project Summary
+This project demonstrates a complete Active Directory lifecycle from infrastructure setup to final validation. It replicates enterprise IT and MSP environments, showcasing hands-on system administration, identity management, security enforcement, and Help Desk operations.
