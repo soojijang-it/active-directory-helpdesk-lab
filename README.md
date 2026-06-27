@@ -137,7 +137,3 @@ This project simulates a real-world enterprise Active Directory environment usin
 
 ## Project Summary
 This lab demonstrates a complete Active Directory environment lifecycle from infrastructure setup to enterprise-style administration and troubleshooting, replicating real IT support and system administration workflows.
-
----
-
-© 2026 Sooji Jang. All rights reserved.
